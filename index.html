@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizza Time - Tuy Hoa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+<header class="bg-green-600 text-white p-4 text-center shadow flex items-center justify-center space-x-3">
+  <img src="https://raw.githubusercontent.com/PizzaBo93/pizzatime/main/logo.jpg" alt="Logo PizzaBo"class="h-20 w-20 rounded-full">
+  <h1 class="text-2xl font-bold">Pizza Time - Tuy Hoa</h1>
+</header>T
+
+  <div class="max-w-4xl mx-auto">
+    <div id="category-tabs" class="flex flex-wrap justify-between gap-2 p-2 border-b text-sm sm:text-base font-medium">
+        <button class="tab flex-1 min-w-[45%] py-2 px-3 text-center border rounded-md bg-white hover:bg-green-50" data-category="Pizza S">Pizza Size S</button>
+        <button class="tab flex-1 min-w-[45%] py-2 px-3 text-center border rounded-md bg-white hover:bg-green-50" data-category="Pizza L">Pizza Size L</button>
+        <button class="tab flex-1 min-w-[45%] py-2 px-3 text-center border rounded-md bg-white hover:bg-green-50" data-category="Món ăn nhẹ">Món ăn nhẹ</button>
+        <button class="tab flex-1 min-w-[45%] py-2 px-3 text-center border rounded-md bg-white hover:bg-green-50" data-category="Nước">Nước</button>
+    </div>
+
+    <div id="menu-container" class="p-4 grid grid-cols-2 gap-4"></div>
+
+    <div class="border-t p-4 mt-6">
+        <h2 class="text-lg font-semibold mb-2">Thông tin khách hàng</h2>
+        <input id="customer-name" type="text" placeholder="Họ và tên" class="w-full mb-3 px-4 py-2 border rounded" required>
+        <input id="customer-phone" type="tel" placeholder="Số điện thoại" class="w-full mb-3 px-4 py-2 border rounded" required>
+        <input id="customer-address" type="text" placeholder="Địa chỉ giao hàng" class="w-full mb-3 px-4 py-2 border rounded" required>
+        <textarea id="customer-note" placeholder="Ghi chú (không bắt buộc)" class="w-full mb-3 px-4 py-2 border rounded h-24 resize-none"></textarea>
+    </div>
+      <h2 class="text-xl font-semibold mb-3">Giỏ hàng (<span id="cart-count">0</span> món)</h2>
+      <div id="cart-items" class="space-y-3 max-h-48 overflow-y-auto"></div>
+      <div class="flex justify-between font-semibold text-lg my-4">
+        <span>Tổng tiền:</span>
+        <span class="text-green-600" id="cart-total">0đ</span>
+      </div>
+      <button id="place-order" class="w-full py-3 bg-green-600 text-white rounded-md font-semibold hover:bg-green-700 transition">Đặt hàng</button>
+    </div>
+
+    <div id="order-summary" class="hidden bg-white border rounded p-4 mt-4 shadow">
+      <h2 class="text-xl font-bold text-green-600 mb-2">Cảm ơn bạn đã đặt hàng!</h2>
+      <p class="mb-2">Thông tin đơn hàng:</p>
+      <div id="order-detail" class="text-sm text-gray-700 space-y-1"></div>
+    </div>
+  </div>
+
+  <script>
+  const pizzaMenu = [
+  { id: 1, name: "Bò (Size S)", price: 45000, category: "Pizza S", image: "/images/Beef-resize.jpg" },
+  { id: 2, name: "Phô mai (Size S)", price: 45000, category: "Pizza S", image: "/images/cheesepizza.jpg" },
+  { id: 3, name: "Gà teriyaki (Size S)", price: 45000, category: "Pizza S", image: "/images/chickenpizza.jpg" },
+  { id: 4, name: "Xúc xích heo (Size S)", price: 45000, category: "Pizza S", image: "/images/pizzaxxh.jpg" },
+  { id: 5, name: "Cá ngừ (Size S)", price: 45000, category: "Pizza S", image: "/images/cangu.jpg" },
+  { id: 6, name: "Ba rọi xông khói (Size S)", price: 45000, category: "Pizza S", image: "/images/Bacon-resize.jpg" },
+
+  { id: 7, name: "Bò (Size L)", price: 99000, category: "Pizza L", image: "/images/Beef-resize.jpg" },
+  { id: 8, name: "Phô mai (Size L)", price: 89000, category: "Pizza L", image: "/images/cheesepizza.jpg" },
+  { id: 9, name: "Gà teriyaki (Size L)", price: 89000, category: "Pizza L", image: "/images/chickenpizza.jpg" },
+  { id: 10, name: "Hải sản (Size L)", price: 99000, category: "Pizza L", image: "/images/hs.jpg" },
+  { id: 11, name: "Xúc xích heo (Size L)", price: 89000, category: "Pizza L", image: "/images/pizzaxxh1.jpg" },
+  { id: 12, name: "Pizza nấm rau củ (Size L)", price: 89000, category: "Pizza L", image: "/images/pizzanamraucu.jpg" },
+  { id: 13, name: "Xúc xích Đức (Size L)", price: 99000, category: "Pizza L", image: "/images/GermanSausage.jpg" },
+  { id: 14, name: "Cá ngừ (Size L)", price: 89000, category: "Pizza L", image: "/images/cangu.jpg" },
+  { id: 15, name: "Ba rọi xông khói (Size L)", price: 89000, category: "Pizza L", image: "/images/Bacon-resize.jpg" },
+  { id: 16, name: "Salami", price: 109000, category: "Pizza L", image: "/images/salami.jpg" },
+  { id: 17, name: "Phô mai tươi", price: 99000, category: "Pizza L", image: "/images/FreshCheese.jpg" },
+  { id: 18, name: "Meat Lover's", price: 119000, category: "Pizza L", image: "/images/MeatLovers.jpg" },
+  { id: 19, name: "Tôm thanh cua", price: 99000, category: "Pizza L", image: "/images/tomthanhcua.jpg" },
+  { id: 20, name: "Khô Gà - Lạp Xưởng", price: 99000, category: "Pizza L", image: "/images/khogalapxuong.jpg" },
+  { id: 21, name: "Thập Cẩm", price: 119000, category: "Pizza L", image: "/images/Assortment.jpg" },
+  { id: 22, name: "Bò sốt cay", price: 119000, category: "Pizza L", image: "/images/gasotcay1.jpg" },
+  { id: 23, name: "Hải sản đặc biệt", price: 109000, category: "Pizza L", image: "/images/hsdb1.jpg" },
+
+  { id: 24, name: "Gà Sốt Cay", price: 29000, category: "Món ăn nhẹ", image: "/images/gasotcay.jpg" },
+  { id: 25, name: "Khoai tây chiên (nhỏ)", price: 20000, category: "Món ăn nhẹ", image: "/images/ktc.jpg" },
+  { id: 26, name: "Khoai tây chiên (lớn)", price: 35000, category: "Món ăn nhẹ", image: "/images/ktc.png" },
+  { id: 27, name: "Tok Lắc Phô Mai", price: 20000, category: "Món ăn nhẹ", image: "/images/toklac.jpg" },
+  { id: 28, name: "Bánh Mì Bơ Tỏi", price: 19000, category: "Món ăn nhẹ", image: "/images/bmbt.jpg" },
+  { id: 29, name: "Gà lắc phô mai cay (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "/images/galac.jpg" },
+  { id: 30, name: "Gà lắc phô mai cay (lớn)", price: 45000, category: "Món ăn nhẹ", image: "/images/galac.jpg" },
+  { id: 31, name: "Gà rán chiên giòn (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "/images/garan.png" },
+  { id: 32, name: "Gà rán chiên giòn (lớn)", price: 30000, category: "Món ăn nhẹ", image: "/images/garan.png" },
+  { id: 33, name: "Mì Ý đút lò", price: 59000, category: "Món ăn nhẹ", image: "/images/miydutlo.jpg" },
+  { id: 34, name: "Mì Ý sốt bò bằm", price: 39000, category: "Món ăn nhẹ", image: "/images/miy.jpg" },
+  { id: 35, name: "Salad Cá Ngừ", price: 39000, category: "Món ăn nhẹ", image: "/images/saladcangu.jpg" },
+  { id: 36, name: "Salad dầu giấm", price: 35000, category: "Món ăn nhẹ", image: "/images/saladdaugiam.jpg" },
+  { id: 37, name: "Bánh mì phô mai", price: 35000, category: "Món ăn nhẹ", image: "/images/cheesebread.JPG" },
+  { id: 38, name: "Bắp Phô Mai", price: 39000, category: "Món ăn nhẹ", image: "/images/cheesecorn.jpg" },
+
+  { id: 39, name: "Nước ngọt (ly)", price: 9000, category: "Nước", image: "/images/cocaly.jpg" },
+  { id: 40, name: "Nước ngọt (lon)", price: 15000, category: "Nước", image: "/images/cocalon.jpg" },
+  { id: 41, name: "Nước suối", price: 9000, category: "Nước", image: "/images/nuocsuoi.jpg" },
+  { id: 42, name: "Local Beer", price: 15000, category: "Nước", image: "/images/spicybeer.jpg" },
+  { id: 43, name: "Đá me hạt mềm", price: 15000, category: "Nước", image: "/images/dame.jpg" },
+  { id: 44, name: "Trà Chanh", price: 15000, category: "Nước", image: "/images/trachanh.png" },
+  { id: 45, name: "Trà Đào", price: 20000, category: "Nước", image: "/images/tradao.jpg" },
+  { id: 46, name: "Trà sữa Thái", price: 20000, category: "Nước", image: "/images/cheesebom.jpg" } // gán tạm
+];
+
+
+    let cart = [];
+    let currentCategory = 'Pizza S';
+
+    function formatPrice(price) {
+      return price.toLocaleString('vi-VN') + 'đ';
+    }
+
+    function renderMenu() {
+      const container = document.getElementById('menu-container');
+      container.innerHTML = '';
+      const items = pizzaMenu.filter(p => p.category === currentCategory);
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "border rounded shadow-sm bg-white hover:shadow-md";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="w-full h-32 object-cover rounded-t" onerror="this.src='https://via.placeholder.com/150'">
+            <div class="p-3">
+            <h3 class="font-bold text-lg">${item.name}</h3>
+            <p class="text-green-600 font-medium">${formatPrice(item.price)}</p>
+            <button data-id="${item.id}" class="add-to-cart mt-2 w-full py-2 bg-green-600 text-white rounded hover:bg-green-700">Thêm vào giỏ</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const product = pizzaMenu.find(p => p.id === id);
+          const existing = cart.find(i => i.id === id);
+          if (existing) existing.quantity += 1;
+          else cart.push({ ...product, quantity: 1 });
+          renderCart();
+        });
+      });
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const count = document.getElementById('cart-count');
+      const total = document.getElementById('cart-total');
+      container.innerHTML = '';
+
+      let totalCount = 0;
+      let totalPrice = 0;
+
+      cart.forEach(item => {
+        totalCount += item.quantity;
+        totalPrice += item.quantity * item.price;
+        const div = document.createElement('div');
+        div.className = "flex justify-between items-center border-b pb-2";
+        div.innerHTML = `
+          <div>
+            <h4 class="font-medium">${item.name}</h4>
+            <p class="text-sm text-gray-600">${formatPrice(item.price)} x ${item.quantity}</p>
+          </div>
+          <div class="flex space-x-2">
+            <button class="decrease w-7 h-7 rounded-full border" data-id="${item.id}">-</button>
+            <span>${item.quantity}</span>
+            <button class="increase w-7 h-7 rounded-full border bg-green-600 text-white" data-id="${item.id}">+</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      count.textContent = totalCount;
+      total.textContent = formatPrice(totalPrice);
+
+      document.querySelectorAll('.increase').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const item = cart.find(i => i.id === id);
+          item.quantity += 1;
+          renderCart();
+        });
+      });
+
+      document.querySelectorAll('.decrease').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const item = cart.find(i => i.id === id);
+          if (item.quantity === 1) cart = cart.filter(i => i.id !== id);
+          else item.quantity -= 1;
+          renderCart();
+        });
+      });
+    }
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentCategory = btn.dataset.category;
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('text-green-600', 'border-b-2', 'border-green-600'));
+        btn.classList.add('text-green-600', 'border-b-2', 'border-green-600');
+        renderMenu();
+      });
+    });
+
+   function sendTelegramMessage(message) {
+  const botToken = '7998294485:AAFTYXovQjyx0uKFJsgM4zQfJ8LFRxzqsfg';
+  const chatId = '-1002687702091';
+  const threadId = 49; // ID topic "Dat Hang"
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      message_thread_id: threadId,  // 👈 Bắt buộc để gửi đúng topic
+      text: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Kết quả từ Telegram:", data);
+    if (data.ok) {
+      alert("Tụi mình sẽ gọi lại xác nhận đơn trong vài phút nhé!");
+    } else {
+      alert("❌ Gửi không thành công: " + data.description);
+    }
+  })
+  .catch(error => {
+    console.error("Lỗi khi gửi Telegram:", error);
+    alert("Có lỗi khi gửi đơn hàng.");
+  });
+}
+
+  function formatOrderMessage(cart, name, phone, address, note) {
+    let message = "🛒 Đơn hàng mới từ Website\n\n";
+    message += `👤 Tên khách hàng: ${name}\n`;
+    message += `📞 Số điện thoại: ${phone}\n`;
+    message += `📍 Địa chỉ: ${address}\n`;
+
+    if (note && note.trim() !== '') {
+      message += `📝 Ghi chú: ${note.trim()}\n`;
+    }
+
+    message += `\n📦 Món đã đặt:\n`;
+    cart.forEach(item => {
+      message += `• ${item.name} x ${item.quantity} = ${itemTotal / 1000}k\n`;
+    });
+
+    return message;
+  }
+
+  document.getElementById('place-order').addEventListener('click', () => {
+    const name = document.getElementById('customer-name').value.trim();
+    const phone = document.getElementById('customer-phone').value.trim();
+    const address = document.getElementById('customer-address').value.trim();
+    const note = document.getElementById('customer-note').value.trim();
+
+    if (!name || !phone || !address) {
+      alert("Vui lòng nhập đầy đủ thông tin khách hàng!");
+      return;
+    }
+    if (cart.length === 0) {
+      alert("Bạn chưa chọn món nào.");
+      return;
+    }
+    const message = formatOrderMessage(cart, name, phone, address, note);
+    sendTelegramMessage(message);
+
+    // Hiển thị phần cảm ơn
+    document.getElementById('order-summary').classList.remove('hidden');
+
+    const detailDiv = document.getElementById('order-detail');
+    detailDiv.innerHTML = `
+      <p><strong>Khách:</strong> ${name}</p>
+      <p><strong>SĐT:</strong> ${phone}</p>
+      <p><strong>Địa chỉ:</strong> ${address}</p>
+      ${note ? `<p><strong>Ghi chú:</strong> ${note}</p>` : ''}
+      <p><strong>Số món:</strong> ${cart.length}</p>
+      <p><strong>Tổng tiền:</strong> ${document.getElementById('cart-total').textContent}</p>
+    `;
+
+    // Reset giỏ hàng
+    cart = [];
+    renderCart();
+  });
+
+
+    // Soạn nội dung tin nhắn
+    let message = `🛒 ĐƠN HÀNG MỚI\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n🏠 Địa chỉ: ${address}\n📝 Ghi chú: ${note || "Không có"}\n\n📦 Món đặt:\n`;
+    let total = 0;
+    cart.forEach(item => {
+      message += `🍕 ${item.name} x${item.quantity} = ${item.price * item.quantity/1000}k\n`;
+      total += item.price * item.quantity;
+    });
+    message += `\n💰 Tổng cộng: ${total/1000}k`;
+
+    // Gửi về Telegram
+    sendTelegramMessage(message);
+
+    // Hiện thông tin đơn hàng trên web
+    const detailDiv = document.getElementById('order-detail');
+    detailDiv.innerHTML = '';
+    cart.forEach(item => {
+      const p = document.createElement('p');
+      p.textContent = `- ${item.name} x ${item.quantity}`;
+      detailDiv.appendChild(p);
+    });
+    detailDiv.innerHTML += `
+      <hr class="my-2"/>
+      <p><strong>Khách hàng:</strong> ${name}</p>
+      <p><strong>Điện thoại:</strong> ${phone}</p>
+      <p><strong>Địa chỉ:</strong> ${address}</p>
+      ${note ? `<p><strong>Ghi chú:</strong> ${note}</p>` : ''}
+    `;
+
+    document.getElementById('order-summary').classList.remove('hidden');
+    alert("Cảm ơn bạn đã đặt hàng!");
+
+    // Reset cart
+    cart = [];
+    renderCart();
+  });
+
+  renderMenu();
+  renderCart();
+</script>
+
+</body>
+</html>
