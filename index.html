@@ -10,7 +10,7 @@
 <header class="bg-green-600 text-white p-4 text-center shadow flex items-center justify-center space-x-3">
   <img src="https://raw.githubusercontent.com/PizzaBo93/pizzatime/main/logo.jpg" alt="Logo PizzaBo"class="h-20 w-20 rounded-full">
   <h1 class="text-2xl font-bold">Pizza Time - Tuy Hoa</h1>
-</header>T
+</header>
 
   <div class="max-w-4xl mx-auto">
     <div id="category-tabs" class="flex flex-wrap justify-between gap-2 p-2 border-b text-sm sm:text-base font-medium">
@@ -46,58 +46,61 @@
   </div>
 
   <script>
-  const pizzaMenu = [
-  { id: 1, name: "Bò (Size S)", price: 45000, category: "Pizza S", image: "/images/Beef-resize.jpg" },
-  { id: 2, name: "Phô mai (Size S)", price: 45000, category: "Pizza S", image: "/images/cheesepizza.jpg" },
-  { id: 3, name: "Gà teriyaki (Size S)", price: 45000, category: "Pizza S", image: "/images/chickenpizza.jpg" },
-  { id: 4, name: "Xúc xích heo (Size S)", price: 45000, category: "Pizza S", image: "/images/pizzaxxh.jpg" },
-  { id: 5, name: "Cá ngừ (Size S)", price: 45000, category: "Pizza S", image: "/images/cangu.jpg" },
-  { id: 6, name: "Ba rọi xông khói (Size S)", price: 45000, category: "Pizza S", image: "/images/Bacon-resize.jpg" },
+    const pizzaMenu = [
+ // --- Pizza Size S ---
+  { id: 1, name: "Bò (Size S)", price: 45000, category: "Pizza S", image: "images/Beef-resize.jpg" },
+  { id: 2, name: "Phô mai (Size S)", price: 45000, category: "Pizza S", image: "images/cheesepizza.jpg" },
+  { id: 3, name: "Gà teriyaki (Size S)", price: 45000, category: "Pizza S", image: "images/chickenpizza.jpg" },
+  { id: 4, name: "Xúc xích heo (Size S)", price: 45000, category: "Pizza S", image: "images/pizzaxxh.jpg" },
+  { id: 5, name: "Cá ngừ (Size S)", price: 45000, category: "Pizza S", image: "images/cangu.jpg" },
+  { id: 6, name: "Ba rọi xông khói (Size S)", price: 45000, category: "Pizza S", image: "images/Bacon-resize.jpg" },
 
-  { id: 7, name: "Bò (Size L)", price: 99000, category: "Pizza L", image: "/images/Beef-resize.jpg" },
-  { id: 8, name: "Phô mai (Size L)", price: 89000, category: "Pizza L", image: "/images/cheesepizza.jpg" },
-  { id: 9, name: "Gà teriyaki (Size L)", price: 89000, category: "Pizza L", image: "/images/chickenpizza.jpg" },
-  { id: 10, name: "Hải sản (Size L)", price: 99000, category: "Pizza L", image: "/images/hs.jpg" },
-  { id: 11, name: "Xúc xích heo (Size L)", price: 89000, category: "Pizza L", image: "/images/pizzaxxh1.jpg" },
-  { id: 12, name: "Pizza nấm rau củ (Size L)", price: 89000, category: "Pizza L", image: "/images/pizzanamraucu.jpg" },
-  { id: 13, name: "Xúc xích Đức (Size L)", price: 99000, category: "Pizza L", image: "/images/GermanSausage.jpg" },
-  { id: 14, name: "Cá ngừ (Size L)", price: 89000, category: "Pizza L", image: "/images/cangu.jpg" },
-  { id: 15, name: "Ba rọi xông khói (Size L)", price: 89000, category: "Pizza L", image: "/images/Bacon-resize.jpg" },
-  { id: 16, name: "Salami", price: 109000, category: "Pizza L", image: "/images/salami.jpg" },
-  { id: 17, name: "Phô mai tươi", price: 99000, category: "Pizza L", image: "/images/FreshCheese.jpg" },
-  { id: 18, name: "Meat Lover's", price: 119000, category: "Pizza L", image: "/images/MeatLovers.jpg" },
-  { id: 19, name: "Tôm thanh cua", price: 99000, category: "Pizza L", image: "/images/tomthanhcua.jpg" },
-  { id: 20, name: "Khô Gà - Lạp Xưởng", price: 99000, category: "Pizza L", image: "/images/khogalapxuong.jpg" },
-  { id: 21, name: "Thập Cẩm", price: 119000, category: "Pizza L", image: "/images/Assortment.jpg" },
-  { id: 22, name: "Bò sốt cay", price: 119000, category: "Pizza L", image: "/images/gasotcay1.jpg" },
-  { id: 23, name: "Hải sản đặc biệt", price: 109000, category: "Pizza L", image: "/images/hsdb1.jpg" },
+  // --- Pizza Size L ---
+  { id: 7, name: "Bò (Size L)", price: 99000, category: "Pizza L", image: "images/Beef-resize.jpg" },
+  { id: 8, name: "Phô mai (Size L)", price: 89000, category: "Pizza L", image: "images/cheesepizza.jpg" },
+  { id: 9, name: "Gà teriyaki (Size L)", price: 89000, category: "Pizza L", image: "images/chickenpizza.jpg" },
+  { id: 10, name: "Hải sản (Size L)", price: 99000, category: "Pizza L", image: "images/hs.jpg" },
+  { id: 11, name: "Xúc xích heo (Size L)", price: 89000, category: "Pizza L", image: "images/pizzaxxh.jpg" },
+  { id: 12, name: "Pizza nấm rau củ (Size L)", price: 89000, category: "Pizza L", image: "images/pizzanamraucu.jpg" },
+  { id: 13, name: "Xúc xích Đức (Size L)", price: 99000, category: "Pizza L", image: "images/GermanSausage.jpg" },
+  { id: 14, name: "Cá ngừ (Size L)", price: 89000, category: "Pizza L", image: "images/cangu.jpg" },
+  { id: 15, name: "Ba rọi xông khói (Size L)", price: 89000, category: "Pizza L", image: "images/Bacon-resize.jpg" },
+  { id: 16, name: "Salami", price: 109000, category: "Pizza L", image: "images/salami.jpg" },
+  { id: 17, name: "Phô mai tươi", price: 99000, category: "Pizza L", image: "images/FreshCheese.jpg" },
+  { id: 18, name: "Meat Lover's", price: 119000, category: "Pizza L", image: "images/MeatLovers.jpg" },
+  { id: 19, name: "Tôm thanh cua", price: 99000, category: "Pizza L", image: "images/tomthanhcua.jpg" },
+  { id: 20, name: "Khô Gà - Lạp Xưởng", price: 99000, category: "Pizza L", image: "images/Beef-resize.jpg" },
+  { id: 21, name: "Thập Cẩm", price: 119000, category: "Pizza L", image: "images/Assortment.jpg" },
+  { id: 22, name: "Bò sốt cay", price: 119000, category: "Pizza L", image: "images/spicybeer.jpg" },
+  { id: 23, name: "Hải sản đặc biệt", price: 109000, category: "Pizza L", image: "images/hsdb.jpg" },
 
-  { id: 24, name: "Gà Sốt Cay", price: 29000, category: "Món ăn nhẹ", image: "/images/gasotcay.jpg" },
-  { id: 25, name: "Khoai tây chiên (nhỏ)", price: 20000, category: "Món ăn nhẹ", image: "/images/ktc.jpg" },
-  { id: 26, name: "Khoai tây chiên (lớn)", price: 35000, category: "Món ăn nhẹ", image: "/images/ktc.png" },
-  { id: 27, name: "Tok Lắc Phô Mai", price: 20000, category: "Món ăn nhẹ", image: "/images/toklac.jpg" },
-  { id: 28, name: "Bánh Mì Bơ Tỏi", price: 19000, category: "Món ăn nhẹ", image: "/images/bmbt.jpg" },
-  { id: 29, name: "Gà lắc phô mai cay (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "/images/galac.jpg" },
-  { id: 30, name: "Gà lắc phô mai cay (lớn)", price: 45000, category: "Món ăn nhẹ", image: "/images/galac.jpg" },
-  { id: 31, name: "Gà rán chiên giòn (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "/images/garan.png" },
-  { id: 32, name: "Gà rán chiên giòn (lớn)", price: 30000, category: "Món ăn nhẹ", image: "/images/garan.png" },
-  { id: 33, name: "Mì Ý đút lò", price: 59000, category: "Món ăn nhẹ", image: "/images/miydutlo.jpg" },
-  { id: 34, name: "Mì Ý sốt bò bằm", price: 39000, category: "Món ăn nhẹ", image: "/images/miy.jpg" },
-  { id: 35, name: "Salad Cá Ngừ", price: 39000, category: "Món ăn nhẹ", image: "/images/saladcangu.jpg" },
-  { id: 36, name: "Salad dầu giấm", price: 35000, category: "Món ăn nhẹ", image: "/images/saladdaugiam.jpg" },
-  { id: 37, name: "Bánh mì phô mai", price: 35000, category: "Món ăn nhẹ", image: "/images/cheesebread.JPG" },
-  { id: 38, name: "Bắp Phô Mai", price: 39000, category: "Món ăn nhẹ", image: "/images/cheesecorn.jpg" },
+  // --- Món ăn nhẹ ---
+  { id: 24, name: "Gà Sốt Cay", price: 29000, category: "Món ăn nhẹ", image: "images/gasotcay.jpg" },
+  { id: 25, name: "Khoai tây chiên (nhỏ)", price: 20000, category: "Món ăn nhẹ", image: "images/Beef-resize.jpg" },
+  { id: 26, name: "Khoai tây chiên (lớn)", price: 35000, category: "Món ăn nhẹ", image: "images/Beef-resize.jpg" },
+  { id: 27, name: "Tok Lắc Phô Mai", price: 20000, category: "Món ăn nhẹ", image: "images/toklac.jpg" },
+  { id: 28, name: "Bánh Mì Bơ Tỏi", price: 19000, category: "Món ăn nhẹ", image: "images/cheesebread.jpg" },
+  { id: 29, name: "Gà lắc phô mai cay (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "images/galac.jpg" },
+  { id: 30, name: "Gà lắc phô mai cay (lớn)", price: 45000, category: "Món ăn nhẹ", image: "images/galac.jpg" },
+  { id: 31, name: "Gà rán chiên giòn (nhỏ)", price: 25000, category: "Món ăn nhẹ", image: "images/garan.jpg" },
+  { id: 32, name: "Gà rán chiên giòn (lớn)", price: 30000, category: "Món ăn nhẹ", image: "images/garan.jpg" },
+  { id: 33, name: "Mì Ý đút lò", price: 59000, category: "Món ăn nhẹ", image: "images/miydutlo.jpg" },
+  { id: 34, name: "Mì Ý sốt bò bằm", price: 39000, category: "Món ăn nhẹ", image: "images/miy.jpg" },
+  { id: 35, name: "Salad Cá Ngừ", price: 39000, category: "Món ăn nhẹ", image: "images/saladcangu.jpg" },
+  { id: 36, name: "Salad dầu giấm", price: 35000, category: "Món ăn nhẹ", image: "images/saladdaugiam.jpg" },
+  { id: 37, name: "Bánh mì phô mai", price: 35000, category: "Món ăn nhẹ", image: "images/cheesebread.jpg" },
+  { id: 38, name: "Bắp Phô Mai", price: 39000, category: "Món ăn nhẹ", image: "images/bapphomai.jpg" },
 
-  { id: 39, name: "Nước ngọt (ly)", price: 9000, category: "Nước", image: "/images/cocaly.jpg" },
-  { id: 40, name: "Nước ngọt (lon)", price: 15000, category: "Nước", image: "/images/cocalon.jpg" },
-  { id: 41, name: "Nước suối", price: 9000, category: "Nước", image: "/images/nuocsuoi.jpg" },
-  { id: 42, name: "Local Beer", price: 15000, category: "Nước", image: "/images/spicybeer.jpg" },
-  { id: 43, name: "Đá me hạt mềm", price: 15000, category: "Nước", image: "/images/dame.jpg" },
-  { id: 44, name: "Trà Chanh", price: 15000, category: "Nước", image: "/images/trachanh.png" },
-  { id: 45, name: "Trà Đào", price: 20000, category: "Nước", image: "/images/tradao.jpg" },
-  { id: 46, name: "Trà sữa Thái", price: 20000, category: "Nước", image: "/images/cheesebom.jpg" } // gán tạm
+  // --- Nước uống ---
+  { id: 39, name: "Nước ngọt (ly)", price: 9000, category: "Nước", image: "images/cocaly.jpg" },
+  { id: 40, name: "Nước ngọt (lon)", price: 15000, category: "Nước", image: "images/cocalon.jpg" },
+  { id: 41, name: "Nước suối", price: 9000, category: "Nước", image: "images/nuocsuoi.jpg" },
+  { id: 42, name: "Local Beer", price: 15000, category: "Nước", image: "images/nuocsuoi.jpg" },
+  { id: 43, name: "Đá me hạt mềm", price: 15000, category: "Nước", image: "images/dame.jpg" },
+  { id: 44, name: "Trà Chanh", price: 15000, category: "Nước", image: "images/tradao.jpg" },
+  { id: 45, name: "Trà Đào", price: 20000, category: "Nước", image: "images/trachanh.jpg" },
+  { id: 46, name: "Trà sữa Thái", price: 20000, category: "Nước", image: "images/tradao.jpg" }
 ];
-
 
     let cart = [];
     let currentCategory = 'Pizza S';
@@ -114,7 +117,7 @@
         const div = document.createElement('div');
         div.className = "border rounded shadow-sm bg-white hover:shadow-md";
         div.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" class="w-full h-32 object-cover rounded-t" onerror="this.src='https://via.placeholder.com/150'">
+          <img src="${item.image || 'https://via.placeholder.com/150'}" alt="${item.name}" class="w-full h-32 object-cover rounded-t">
             <div class="p-3">
             <h3 class="font-bold text-lg">${item.name}</h3>
             <p class="text-green-600 font-medium">${formatPrice(item.price)}</p>
@@ -196,111 +199,77 @@
       });
     });
 
-   function sendTelegramMessage(message) {
-  const botToken = '7998294485:AAFTYXovQjyx0uKFJsgM4zQfJ8LFRxzqsfg';
-  const chatId = '-1002687702091';
-  const threadId = 49; // ID topic "Dat Hang"
-
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      chat_id: chatId,
-      message_thread_id: threadId,  // 👈 Bắt buộc để gửi đúng topic
-      text: message
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Kết quả từ Telegram:", data);
-    if (data.ok) {
-      alert("Tụi mình sẽ gọi lại xác nhận đơn trong vài phút nhé!");
-    } else {
-      alert("❌ Gửi không thành công: " + data.description);
-    }
-  })
-  .catch(error => {
-    console.error("Lỗi khi gửi Telegram:", error);
-    alert("Có lỗi khi gửi đơn hàng.");
-  });
-}
-
   function formatOrderMessage(cart, name, phone, address, note) {
-    let message = "🛒 Đơn hàng mới từ Website\n\n";
+    let message = "🛒 **ĐƠN HÀNG MỚI**\n\n";
     message += `👤 Tên khách hàng: ${name}\n`;
     message += `📞 Số điện thoại: ${phone}\n`;
     message += `📍 Địa chỉ: ${address}\n`;
-
     if (note && note.trim() !== '') {
       message += `📝 Ghi chú: ${note.trim()}\n`;
     }
 
-    message += `\n📦 Món đã đặt:\n`;
+    message += `\n📦 **Món đã đặt:**\n`;
+    let total = 0;
     cart.forEach(item => {
-      message += `• ${item.name} x ${item.quantity} = ${itemTotal / 1000}k\n`;
+      const itemTotal = item.price * item.quantity;
+      message += `🍕 ${item.name} x${item.quantity} = ${(itemTotal / 1000)}k\n`;
+      total += itemTotal;
     });
-
+    message += `\n💰 **Tổng cộng:** ${(total / 1000)}k`;
     return message;
   }
 
-  document.getElementById('place-order').addEventListener('click', () => {
-    const name = document.getElementById('customer-name').value.trim();
-    const phone = document.getElementById('customer-phone').value.trim();
-    const address = document.getElementById('customer-address').value.trim();
-    const note = document.getElementById('customer-note').value.trim();
+  document.getElementById("place-order").addEventListener("click", () => {
+    const name = document.getElementById("customer-name").value.trim();
+    const phone = document.getElementById("customer-phone").value.trim();
+    const address = document.getElementById("customer-address").value.trim();
+    const note = document.getElementById("customer-note").value.trim();
 
     if (!name || !phone || !address) {
       alert("Vui lòng nhập đầy đủ thông tin khách hàng!");
       return;
     }
+
     if (cart.length === 0) {
-      alert("Bạn chưa chọn món nào.");
+      alert("Giỏ hàng của bạn đang trống!");
       return;
     }
+
     const message = formatOrderMessage(cart, name, phone, address, note);
-    sendTelegramMessage(message);
 
-    // Hiển thị phần cảm ơn
-    document.getElementById('order-summary').classList.remove('hidden');
-
-    const detailDiv = document.getElementById('order-detail');
-    detailDiv.innerHTML = `
-      <p><strong>Khách:</strong> ${name}</p>
-      <p><strong>SĐT:</strong> ${phone}</p>
-      <p><strong>Địa chỉ:</strong> ${address}</p>
-      ${note ? `<p><strong>Ghi chú:</strong> ${note}</p>` : ''}
-      <p><strong>Số món:</strong> ${cart.length}</p>
-      <p><strong>Tổng tiền:</strong> ${document.getElementById('cart-total').textContent}</p>
-    `;
-
-    // Reset giỏ hàng
-    cart = [];
-    renderCart();
+    fetch("https://discord.com/api/webhooks/1377218452028264459/iMl7C6kr8fwTjrxSEnWNYNpzqTXtvG6MI982D_lmwv5a0Q5L_fFDV0Rp8ms8Q6FpppCP", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: message })
+    })
+    .then(res => {
+      if (res.ok) {
+        alert("Cảm ơn bạn! Đơn hàng đã được gửi. Tụi mình sẽ gọi xác nhận trong vòng ít phút");
+        cart = [];
+        localStorage.removeItem("cart");
+        renderCart();
+        renderOrderSummary(name, phone, address, note);
+      } else {
+        alert("Không thể gửi đơn hàng. Vui lòng thử lại!");
+      }
+    })
+    .catch(err => {
+      console.error("Lỗi gửi webhook:", err);
+      alert("Đã xảy ra lỗi khi gửi đơn hàng!");
+    });
   });
 
-
-    // Soạn nội dung tin nhắn
-    let message = `🛒 ĐƠN HÀNG MỚI\n👤 Khách: ${name}\n📞 SĐT: ${phone}\n🏠 Địa chỉ: ${address}\n📝 Ghi chú: ${note || "Không có"}\n\n📦 Món đặt:\n`;
-    let total = 0;
-    cart.forEach(item => {
-      message += `🍕 ${item.name} x${item.quantity} = ${item.price * item.quantity/1000}k\n`;
-      total += item.price * item.quantity;
-    });
-    message += `\n💰 Tổng cộng: ${total/1000}k`;
-
-    // Gửi về Telegram
-    sendTelegramMessage(message);
-
-    // Hiện thông tin đơn hàng trên web
+  function renderOrderSummary(name, phone, address, note) {
     const detailDiv = document.getElementById('order-detail');
+    if (!detailDiv) return;
+
     detailDiv.innerHTML = '';
     cart.forEach(item => {
       const p = document.createElement('p');
       p.textContent = `- ${item.name} x ${item.quantity}`;
       detailDiv.appendChild(p);
     });
+
     detailDiv.innerHTML += `
       <hr class="my-2"/>
       <p><strong>Khách hàng:</strong> ${name}</p>
@@ -309,17 +278,7 @@
       ${note ? `<p><strong>Ghi chú:</strong> ${note}</p>` : ''}
     `;
 
-    document.getElementById('order-summary').classList.remove('hidden');
-    alert("Cảm ơn bạn đã đặt hàng!");
-
-    // Reset cart
-    cart = [];
-    renderCart();
-  });
-
-  renderMenu();
-  renderCart();
+    const summary = document.getElementById('order-summary');
+    if (summary) summary.classList.remove('hidden');
+  }
 </script>
-
-</body>
-</html>
