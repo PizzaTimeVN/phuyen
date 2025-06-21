@@ -242,7 +242,7 @@
   headers: {
     "Content-Type": "text/plain" // ✅ Không gây ra preflight
   },
-  body: JSON.stringify({ message }) // vẫn gửi JSON nhưng dạng text
+  body: JSON.stringify({ message, apikey: "pizzatime77" }) // vẫn gửi JSON nhưng dạng text
 })
 .then(res => res.json())
 .then(data => {
