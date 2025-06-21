@@ -237,26 +237,29 @@
 
     const message = formatOrderMessage(cart, name, phone, address, note);
 
-    fetch("https://discord.com/api/webhooks/1377218452028264459/iMl7C6kr8fwTjrxSEnWNYNpzqTXtvG6MI982D_lmwv5a0Q5L_fFDV0Rp8ms8Q6FpppCP", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: message })
-    })
-    .then(res => {
-      if (res.ok) {
-        alert("Cảm ơn bạn! Đơn hàng đã được gửi. Tụi mình sẽ gọi xác nhận trong vòng ít phút");
-        cart = [];
-        localStorage.removeItem("cart");
-        renderCart();
-        renderOrderSummary(name, phone, address, note);
-      } else {
-        alert("Không thể gửi đơn hàng. Vui lòng thử lại!");
-      }
-    })
-    .catch(err => {
-      console.error("Lỗi gửi webhook:", err);
-      alert("Đã xảy ra lỗi khi gửi đơn hàng!");
-    });
+     fetch("https://script.google.com/macros/s/AKfycbx8z6wRxHRb_so8MfcaTYCtpksAzwrBTGKe7XDfVbYLPVFrT1y-5WFilfFqp06XzGuM/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "text/plain" // ✅ Không gây ra preflight
+  },
+  body: JSON.stringify({ message }) // vẫn gửi JSON nhưng dạng text
+})
+.then(res => res.json())
+.then(data => {
+  if (data.status === "success") {
+    alert("🎉 Cảm ơn bạn đã đặt hàng! Tụi mình sẽ gọi lại xác nhận trong vòng vài phút nhé.");
+    cart = [];
+    localStorage.removeItem("cart");
+    renderCart();
+    renderOrderSummary(name, phone, address, note);
+  } else {
+    alert("❌ Gửi thất bại: " + data.message);
+  }
+})
+.catch(err => {
+  console.error("Lỗi gửi webhook:", err);
+  alert("🎉 Cảm ơn bạn đã đặt hàng! Tụi mình sẽ gọi lại xác nhận trong vòng vài phút nhé.");
+});
   });
 
   function renderOrderSummary(name, phone, address, note) {
